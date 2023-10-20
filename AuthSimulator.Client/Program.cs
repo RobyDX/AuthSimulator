@@ -63,7 +63,6 @@ builder.Services.AddAuthentication(options =>
     options.AuthorizationEndpoint = $"{url}/auth";
     options.TokenEndpoint = $"{url}/token";
     options.UserInformationEndpoint = $"{url}/userinfo";
-
 })
 .AddFacebook(options =>
 {

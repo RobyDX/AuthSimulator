@@ -57,8 +57,6 @@ namespace AuthSimulator.Business.Manager
                 Active = true
             });
 
-#warning add a default set of claims
-
             await Context.SaveChangesAsync();
 
             return user.Entity.Id;

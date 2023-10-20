@@ -113,13 +113,16 @@ namespace AuthSimulator.Business.Manager
         {
             var user = await Context
                 .Users
-                .FirstOrDefaultAsync(u => u.Id == userId) ?? throw new AuthException(AuthExceptionReasons.UnauthorizedClient); ;
+                .FirstOrDefaultAsync(u => u.Id == userId) ?? throw new AuthException(AuthExceptionReasons.UnauthorizedClient);
+
+            var expires = int.Parse(await GetParameterValue(ParameterEnum.Expires));
+
             var auth = Context.Auths.Add(new()
             {
                 UserId = user.Id,
                 Valid = true,
                 Code = Utility.Utility.GenerateCode(Constants.CodeSize),
-                Expires = DateTime.Now.AddSeconds(10000)
+                Expires = DateTime.Now.AddSeconds(expires)
             });
 
             await Context.SaveChangesAsync();

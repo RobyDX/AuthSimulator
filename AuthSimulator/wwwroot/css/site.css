@@ -25,3 +25,18 @@ body {
     .btn svg:hover {
         fill: #0b5ed7;
     }
+
+
+.help {
+    background-color: gray;
+}
+
+    .help > div  {
+        padding: 30px;
+    }
+
+    .help img {
+        max-width: 100%;
+        max-height: auto;
+        object-fit: contain;
+    }

@@ -6,7 +6,6 @@
                     <tr>
                         <th>Name</th>
                         <th>Value</th>
-                        <th>Type</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -14,7 +13,6 @@
                 <tr v-for="item in parameters">
                     <td>{{item.name}}</td>
                     <td>{{item.value}}</td>
-                    <td>{{item.parameterType}}</td>
                     <td>
                         <a href="#" title="edit current parameter" class="btn" v-on:click.prevent="openParameter(item.id)">
                             <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24">
@@ -104,7 +102,7 @@
                     url: "/Parameter/" + c.current.id,
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",
-                    data: JSON.stringify({ value: c.current.value })
+                    data: JSON.stringify({ value: c.current.value.toString() })
                 }).done(function (msg) {
                     showSuccess();
                     c.panelIndex = 0;
