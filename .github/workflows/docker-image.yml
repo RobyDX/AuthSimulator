@@ -22,8 +22,8 @@ jobs:
     - name: Tags
       run: |
         docker tag back robydx/authsimulator:${{ github.sha }}
-        docker tag back robydx/authsimulator/back:latest
+        docker tag back robydx/authsimulator:latest
     - name: Push
       run: |
-        docker push ${{ secrets.DOCKER_USER }}/back:${{ github.sha }}
-        docker push ${{ secrets.DOCKER_USER }}/back:latest   
+        docker push robydx/authsimulator:${{ github.sha }}
+        docker push robydx/authsimulator:latest   
