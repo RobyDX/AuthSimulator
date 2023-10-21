@@ -17,7 +17,7 @@ jobs:
     - name: Docker Login
       run: docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASSWORD }}
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+      run: docker build . --file Dockerfile --tag robydx/authsimulator:$(date +%s)
     - name: Tags
       run: |
         docker tag back ${{ secrets.DOCKER_USER }}/back:${{ github.sha }}
