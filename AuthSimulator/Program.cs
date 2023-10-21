@@ -35,7 +35,7 @@ switch (mode.ToLower())
         builder.Services.AddDbContext<DB>(options => options.UseSqlite($"Data Source={connString}"));
         break;
     case "memory":
-        builder.Services.AddDbContext<DB>(options => options.UseInMemoryDatabase("InMemory"));
+        builder.Services.AddDbContext<DB>(options => options.UseInMemoryDatabase(builder.Configuration.GetConnectionString("Memory")?? "AuthSimulator"));
         break;
     default:
         break;
