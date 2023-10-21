@@ -1,0 +1,11 @@
+version: '3.4'
+services:
+    authsimulator:
+        image: robydx/authsimulator
+        restart: on-failure
+        environment:
+            - ConnectionStrings:Memory=authsimulator
+            - ConnectionMode=Memory
+        ports:
+            - "6080:80" 
+            - "6443:443" 

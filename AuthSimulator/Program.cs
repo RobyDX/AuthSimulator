@@ -5,6 +5,7 @@ using AuthSimulator.Business.Data;
 using AuthSimulator.Middleware;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
+using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -26,7 +27,12 @@ switch (mode.ToLower())
         builder.Services.AddDbContext<DB>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("SQL")));
         break;
     case "lite":
-        builder.Services.AddDbContext<DB>(options => options.UseSqlite(builder.Configuration.GetConnectionString("Lite")));
+        string connString = builder.Configuration.GetConnectionString("Lite") ?? "";
+        connString = connString.Replace("~/", AppContext.BaseDirectory);
+        if (!Directory.Exists(Path.GetDirectoryName(connString)))
+            Directory.CreateDirectory(Path.GetDirectoryName(connString) ?? throw new Exception());
+
+        builder.Services.AddDbContext<DB>(options => options.UseSqlite($"Data Source={connString}"));
         break;
     case "memory":
         builder.Services.AddDbContext<DB>(options => options.UseInMemoryDatabase("InMemory"));
@@ -56,5 +62,7 @@ app.UseStaticFiles();
 app.UseAuthorization();
 
 app.MapControllers();
+
+
 
 app.Run();

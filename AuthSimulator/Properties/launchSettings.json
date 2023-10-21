@@ -5,7 +5,11 @@
       "launchBrowser": true,
       "launchUrl": "swagger",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "ConnectionStrings__SQL": "Server=localhost,1433;Database=AuthSimulator;User Id=sa;Password=Roby2017@;MultipleActiveResultSets=True;App=EntityFramework",
+        "ConnectionStrings__Lite": "~/litedata/AuthSimulator.db",
+        "ConnectionStrings__Memory": "AuthSimulator",
+        "ConnectionMode": "Lite"
       },
       "dotnetRunMessages": true,
       "applicationUrl": "https://localhost:5001;http://localhost:5000"
@@ -15,7 +19,11 @@
       "launchBrowser": true,
       "launchUrl": "swagger",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "ConnectionStrings__SQL": "Server=localhost,1433;Database=AuthSimulator;User Id=sa;Password=Roby2017@;MultipleActiveResultSets=True;App=EntityFramework",
+        "ConnectionStrings__Lite": "Data Source=~/litedata/AuthSimulator.db",
+        "ConnectionStrings__Memory": "AuthSimulator",
+        "ConnectionMode": "Lite"
       }
     },
     "Docker": {
@@ -23,7 +31,11 @@
       "launchBrowser": true,
       "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}/swagger",
       "environmentVariables": {
-        "ASPNETCORE_URLS": "https://+:443;http://+:80"
+        "ASPNETCORE_URLS": "https://+:443;http://+:80",
+        "ConnectionStrings__SQL": "Server=localhost,1433;Database=AuthSimulator;User Id=sa;Password=Roby2017@;MultipleActiveResultSets=True;App=EntityFramework",
+        "ConnectionStrings__Lite": "Data Source=C:\\Codice\\Temp\\AuthSimulator.db",
+        "ConnectionStrings__Memory": "AuthSimulator",
+        "ConnectionMode": "Lite"
       },
       "publishAllPorts": true,
       "useSSL": true
