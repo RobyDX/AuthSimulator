@@ -1,0 +1,15 @@
+version: '3.4'
+services:
+    authsimulator:
+        image: robydx/authsimulator
+        restart: on-failure
+        environment:
+            - ConnectionStrings:Lite=litedata/authsimulator.db
+            - ConnectionMode=Lite
+        ports:
+            - "6080:80" 
+            - "6443:443" 
+        volumes:
+            - authdata:/app/litedata
+volumes:
+    authdata:

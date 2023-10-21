@@ -1,0 +1,1 @@
+docker build -f AuthSimulator\Dockerfile -t robydx/authsimulator:v0.1 .

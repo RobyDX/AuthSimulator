@@ -1,0 +1,236 @@
+﻿
+<div id="appClient">
+    <div v-if="panelIndex==0">
+        <div v-if="clients.length==0">
+            <div class="alert alert-warning" role="alert">
+                No Client Defined. Add One
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col-9"></div>
+            <div class="col-3 text-end">
+                <button class="btn btn-primary" v-on:click.prevent="newClient()" type="button" id="button-addon2">New Client</button>
+            </div>
+        </div>
+        
+        <div v-if="clients.length>0" style="overflow-y:scroll;max-height:600px">
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Client Id</th>
+                        <th>Client Secret</th>
+                        <th>State</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+
+                <tr v-for="item in clients">
+                    <td>{{item.name}}</td>
+                    <td>{{item.clientId}}</td>
+                    <td>{{item.clientSecret}}</td>
+                    <td>
+                        <a v-if="item.active" href="#" title="Client active. Click to change activation state." class="btn" v-on:click.prevent="changeState(item.id)">
+                            <svg style="fill:green" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24">
+                                <path d="m424-296 282-282-56-56-226 226-114-114-56 56 170 170Zm56 216q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z" />
+                            </svg>
+                        </a>
+                        <a v-if="!item.active" href="#" title="Client not active. Click to change activation state." class="btn" v-on:click.prevent="changeState(item.id)">
+                            <svg xmlns="http://www.w3.org/2000/svg" style="fill:red" height="24" viewBox="0 -960 960 960" width="24">
+                                <path d="m336-280 144-144 144 144 56-56-144-144 144-144-56-56-144 144-144-144-56 56 144 144-144 144 56 56ZM480-80q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z" />
+                            </svg>
+                        </a>
+                    </td>
+                    <td>
+                        <a href="#" title="edit current client" class="btn" v-on:click.prevent="openClient(item.id)">
+                            <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24">
+                                <path d="M200-200h56l345-345-56-56-345 345v56Zm572-403L602-771l56-56q23-23 56.5-23t56.5 23l56 56q23 23 24 55.5T829-660l-57 57Zm-58 59L290-120H120v-170l424-424 170 170Zm-141-29-28-28 56 56-28-28Z" />
+                            </svg>
+                        </a>
+                        <a href="#" title="delete current client" v-on:click="select(item)" class="btn" data-bs-toggle="modal" data-bs-target="#deleteClientConfirm">
+                            <svg xmlns="http://www.w3.org/2000/svg" style="fill:red" height="24" viewBox="0 -960 960 960" width="24">
+                                <path d="M280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm400-600H280v520h400v-520ZM360-280h80v-360h-80v360Zm160 0h80v-360h-80v360ZM280-720v520-520Z" />
+                            </svg>
+                        </a>
+                    </td>
+                </tr>
+
+            </table>
+        </div>
+    </div>
+
+    <div v-if="panelIndex==1">
+        <form id="formuser" v-on:submit.prevent="submit">
+            <h5 class="text-center">Information</h5>
+            <div class="row">
+                <label class="form-label fw-bold" for="client_name">Name</label>
+                <input id="client_name" class="form-control" v-model="current.name" type="text" required />
+            </div>
+            <div class="row">
+                <label class="form-label fw-bold" for="client_id">Client Id</label>
+                <input id="client_id" class="form-control" v-model="current.clientId" type="text" required />
+            </div>
+
+            <div class="row">
+                <label class="form-label fw-bold" for="client_secret">Client Secret</label>
+                <input id="client_secret" class="form-control" v-model="current.clientSecret" type="text" required />
+            </div>
+
+            <div class="mt-3">
+                <input type="submit" class="btn btn-lg btn-primary" value="Save" />
+                <button class="btn btn-lg btn-primary ms-3" v-on:click="back()">Back</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="deleteClientConfirm" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Delete User</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to delete current client?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Delete</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+
+
+    createApp({
+        methods: {
+            newClient() {
+                let c = this;
+                c.current = { id: 0, name: "", clientId: "", clientSecret: "" };
+                c.claims = [];
+                c.panelIndex = 1;
+            },
+            openClient(id) {
+                let c = this;
+                $.get("/Client/" + id, function (data) {
+                    c.current = data;
+                });
+
+                c.panelIndex = 1;
+            },
+            select(item) {
+                current = item;
+            },
+            deleteClient() {
+                let c = this;
+                $.ajax({
+                    method: "DELETE",
+                    url: "/client/" + current.id,
+                    contentType: "application/json; charset=utf-8"
+                }).done(function (msg) {
+                    $("#successAlert").fadeIn(250);
+                    setTimeout(function () {
+                        $("#successAlert").fadeOut(250);
+                    }, 3000);
+                    c.reload();
+                }).fail(function (data) {
+                    $("#failAlert").fadeIn(250);
+                    setTimeout(function () {
+                        $("#failAlert").fadeOut(250);
+                    }, 3000);
+                });;
+            },
+            back() {
+                this.panelIndex = 0;
+            },
+            reload() {
+                let c = this;
+                $.get("/Client/list", function (data) {
+                    c.clients = data;
+                });
+            },
+            changeState(id) {
+                let c = this;
+                $.ajax({
+                    method: "PUT",
+                    url: "/Client/activation/" + id,
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    data: JSON.stringify({})
+                }).done(function (msg) {
+                    $("#successAlert").fadeIn(250);
+                    setTimeout(function () {
+                        $("#successAlert").fadeOut(250);
+                    }, 3000);
+
+                    c.reload();
+
+                }).fail(function (data) {
+                    $("#failAlert").fadeIn(250);
+                    setTimeout(function () {
+                        $("#failAlert").fadeOut(250);
+                    }, 3000);
+                });;
+            },
+            submit() {
+                let c = this;
+
+                let method = "";
+                let url = "";
+
+                if (c.current.id > 0) {
+                    method = "PUT";
+                    url = "/Client/" + c.current.id;
+                } else {
+                    method = "POST";
+                    url = "/Client";
+                }
+
+                $.ajax({
+                    method: method,
+                    url: url,
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    data: JSON.stringify(c.current)
+                }).done(function (msg) {
+                    $("#successAlert").fadeIn(250);
+                    setTimeout(function () {
+                        $("#successAlert").fadeOut(250);
+                    }, 3000);
+
+                    c.panelIndex = 0;
+                    c.reload();
+
+                }).fail(function (data) {
+                    $("#failAlert").fadeIn(250);
+                    setTimeout(function () {
+                        $("#failAlert").fadeOut(250);
+                    }, 3000);
+                });
+
+
+            }
+        },
+        mounted() {
+            let c = this;
+            $("#deleteClientConfirm .btn-primary").click(function () { c.deleteClient(); });
+            $.get("/Client/list", function (data) {
+                c.clients = data;
+            });
+        },
+        data() {
+            return {
+                panelIndex: 0,
+                current: {},
+                clients: [],
+                searchtext: ""
+            }
+        }
+    }).mount('#appClient')
+</script>

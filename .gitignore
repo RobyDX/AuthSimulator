@@ -1,0 +1,11 @@
+﻿################################################################################
+# Il file gitignore è stato creato automaticamente da Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs
+/AuthSimulator/bin
+/AuthSimulator/obj
+/AuthSimulator.Business/bin
+/AuthSimulator.Business/obj
+/AuthSimulator.Client/bin
+/AuthSimulator.Client/obj

@@ -1,0 +1,42 @@
+html {
+    font-size: 14px;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    margin-bottom: 60px;
+}
+
+.btn svg {
+    fill: #0d6efd;
+    transform: scale(1.2);
+}
+
+    .btn svg:hover {
+        fill: #0b5ed7;
+    }
+
+
+.help {
+    background-color: gray;
+}
+
+    .help > div  {
+        padding: 30px;
+    }
+
+    .help img {
+        max-width: 100%;
+        max-height: auto;
+        object-fit: contain;
+    }

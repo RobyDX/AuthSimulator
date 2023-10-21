@@ -1,0 +1,63 @@
+﻿@using AuthSimulator.Client.Code;
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+
+
+@if (ViewBag.Logged)
+{
+    <div class="text-center">
+        <h1 class="display-4">Welcome @ViewBag.Name</h1>
+        <p>You are authenticated</p>
+    </div>
+
+    <div class="text-center mt-3">
+        @{
+            var claims = ViewBag.Claims as List<UserData> ?? new List<UserData>();
+        }
+    </div>
+    <div>
+        <table class="table">
+            @foreach (var item in claims)
+            {
+                <tr>
+                    <td title="@item.Name">@item.ShortName</td>
+                    <td>@item.Value</td>
+                </tr>
+            }
+        </table>
+    </div>
+
+    <div class="text-center mt-3">
+        <a href='@Url.Action("Logoff","Home")' title="Signout" class="btn btn-primary btn-lg">Signout</a>
+    </div>
+
+
+}
+else
+{
+    <div class="text-center">
+        <h1 class="display-4">Welcome</h1>
+        <p>This interface was maden to simulate Oauth2 authentication</p>
+    </div>
+    <div class="text-center">
+        <form action="/home/dooauth" method="post">
+            <div class="row">
+
+                <label class="form-label" for="provider">Select Provider</label>
+                <select id="provider" name="provider" class="form-select" required>
+                    <option value="custom">Custom</option>
+                    <option value="facebook">Facebook</option>
+                    <option value="google">Google</option>
+                    <option value="microsoft">Microsoft</option>
+                </select>
+            </div>
+            <div class="row mt-3">
+                <input class="btn btn-lg btn-primary" type="submit" value="Sign In">
+            </div>
+        </form>
+    </div>
+
+
+}

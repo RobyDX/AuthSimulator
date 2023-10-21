@@ -1,0 +1,70 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>OAuth Simulator</title>
+    <link rel="icon" href="~/oauth.png" type="image/png" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/app/vue.prod.js"></script>
+</head>
+<body>
+
+    <hr class="my-3" />
+    <div style="position:fixed;top:0;left:0;right:0;">
+        <div id="successAlert" style="display:none">
+            <div class="alert alert-success d-flex align-items-center" role="alert">
+                <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill" /></svg>
+                <div>
+                    Save Confirmed
+                </div>
+            </div>
+        </div>
+        <div id="failAlert" style="display:none">
+            <div class="alert alert-danger d-flex align-items-center" role="alert">
+                <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill" /></svg>
+                <div>
+                    An error occurred
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="text-center">
+            <h1 class="display-4">OAuth Simulator</h1>
+            <p>Simulate Authentication Provider for your Application</p>
+        </div>
+        <main role="main" class="pb-3" style="min-height:600px">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2023 - OAuth Simulator
+        </div>
+    </footer>
+
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script>
+        function showSuccess() {
+            $("#successAlert").fadeIn(250);
+            setTimeout(function () {
+                $("#successAlert").fadeOut(250);
+            }, 3000);
+        }
+
+        function showError() {
+            $("#failAlert").fadeIn(250);
+            setTimeout(function () {
+                $("#failAlert").fadeOut(250);
+            }, 3000);
+        }
+
+    </script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
