@@ -18,12 +18,7 @@ jobs:
     - name: Docker Login
       run: docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASSWORD }}
     - name: Build the Docker image
-      run: docker build . --file AuthSimulator/Dockerfile --tag robydx/authsimulator:$(date +%s)
-    - name: Tags
-      run: |
-        docker tag back robydx/authsimulator:${{ github.sha }}
-        docker tag back robydx/authsimulator:latest
+      run: docker build . --file AuthSimulator/Dockerfile --tag robydx/authsimulator:${{ github.sha }}
     - name: Push
       run: |
         docker push robydx/authsimulator:${{ github.sha }}
-        docker push robydx/authsimulator:latest   
