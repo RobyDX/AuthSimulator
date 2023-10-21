@@ -3,13 +3,13 @@ Auth Simulator is a small provider whose purpose is to simulate an OAuth2 provid
 
 By configuring your web application you can simulate the connection to a real provider, helping you in the development and testing phase.
 
-Auth simulator can be run in memory (you will lose all configuration by restarting the container) or using SQLLite or SQLServer to mantain your data
+Auth simulator can be run in memory (you will lose all configuration by restarting the container) or using SQLite or SQLServer to mantain your data
 
 
 ### Environment Variable
 
 - ConnectionStrings__SQL: Contain the SQL Server Connection String. Required only if ConnectionMode is set to SQL
-- ConnectionStrings__Lite: Contains path and filename of your SQLLite DB. Required only if ConnectionMode is set to Lite
+- ConnectionStrings__Lite: Contains path and filename of your SQLite DB. Required only if ConnectionMode is set to Lite
 - ConnectionStrings__Memory: Contain name of your in memory DB. Required only if ConnectionMode is set to Memory
 - ConnectionMode": Contains Database type you prefer to use (Lite, SQL, Memory). 
 
