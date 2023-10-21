@@ -3,7 +3,7 @@
     "AuthSimulator": {
       "commandName": "Project",
       "launchBrowser": true,
-      "launchUrl": "swagger",
+      "launchUrl": "",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
         "ConnectionStrings__SQL": "Server=localhost,1433;Database=AuthSimulator;User Id=sa;Password=Roby2017@;MultipleActiveResultSets=True;App=EntityFramework",
@@ -17,7 +17,7 @@
     "IIS Express": {
       "commandName": "IISExpress",
       "launchBrowser": true,
-      "launchUrl": "swagger",
+      "launchUrl": "",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
         "ConnectionStrings__SQL": "Server=localhost,1433;Database=AuthSimulator;User Id=sa;Password=Roby2017@;MultipleActiveResultSets=True;App=EntityFramework",
