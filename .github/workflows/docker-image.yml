@@ -20,7 +20,7 @@ jobs:
     - name: Build the Docker image
       run: docker build . --file AuthSimulator/Dockerfile --tag authsimulator
     - name: Tag
-      run: 
+      run: |
         docker tag authsimulator robydx/authsimulator:${{ github.sha }}
         docker tag authsimulator robydx/authsimulator:latest
     - name: Push
