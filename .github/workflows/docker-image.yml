@@ -22,3 +22,4 @@ jobs:
     - name: Push
       run: |
         docker push robydx/authsimulator:${{ github.sha }}
+        docker push robydx/authsimulator:latest
