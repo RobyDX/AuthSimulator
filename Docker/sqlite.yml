@@ -8,7 +8,6 @@ services:
             - ConnectionMode=Lite
         ports:
             - "6080:80" 
-            - "6443:443" 
         volumes:
             - authdata:/app/litedata
 volumes:

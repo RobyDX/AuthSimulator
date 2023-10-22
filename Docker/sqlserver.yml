@@ -18,6 +18,5 @@ services:
             - ConnectionMode=sql
         ports:
             - "6080:80" 
-            - "6443:443" 
 volumes:
     mssql-server-data:
