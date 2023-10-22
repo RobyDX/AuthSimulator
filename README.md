@@ -49,7 +49,7 @@ Configure container to match your needs.
 				- "6080:80" 
 				- "6443:443" 
 			volumes:
-				- foxdata:/app/litedata
+				- authdata:/app/litedata
 	volumes:
 		authdata:
 	
