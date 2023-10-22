@@ -33,7 +33,6 @@ Configure container to match your needs.
 				- ConnectionMode=Memory
 			ports:
 				- "6080:80" 
-				- "6443:443" 
 
 ### SQLLite Configuration
 
@@ -47,7 +46,6 @@ Configure container to match your needs.
 				- ConnectionMode=Lite
 			ports:
 				- "6080:80" 
-				- "6443:443" 
 			volumes:
 				- authdata:/app/litedata
 	volumes:
@@ -76,6 +74,5 @@ Configure container to match your needs.
 				- ConnectionMode=sql
 			ports:
 				- "6080:80" 
-				- "6443:443" 
 	volumes:
 		mssql-server-data:
